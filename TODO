@@ -1,0 +1,14 @@
+implement database
+
+take assessor number
+  -get tax doc
+    -get amount owed
+
+  -go to pq lite
+    -get image
+
+Google image?
+
+possibly zillow, trulia, netflix etx. listing links and estimated value
+
+FILTERS!

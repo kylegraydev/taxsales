@@ -6,6 +6,7 @@
                 <table class="table table-striped">
                   <thead>
                   <tr>
+                    <th>Parcel Number</th>
                     <th>Address</th>
                     <th>Name</th>
                     <th>Legal Description</th>
@@ -18,6 +19,7 @@
 
                   <% @properties.each do |property| %>
                     <tr>
+                      <td><%= property.parcel_num %></td>
                       <td><%= property.address %></td>
                       <td><%= property.name %></td>
                       <td><%= property.legal_desc %></td>
