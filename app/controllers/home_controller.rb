@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  before_action :first_visit?
+  # before_action :first_visit?
   before_action :set_properties
   # , except: [:update]
 

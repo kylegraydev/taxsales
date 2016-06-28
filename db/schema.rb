@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20160625020250) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "tax_sales", force: true do |t|
+  create_table "properties", force: true do |t|
     t.string "parcel_num"
     t.string "name"
     t.string "address"

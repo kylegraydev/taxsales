@@ -1,6 +1,6 @@
 class CreateTaxSales < ActiveRecord::Migration
   def change
-    create_table :tax_sales do |t|
+    create_table :properties do |t|
       t.string :parcel_num
       t.string :name
       t.string :address

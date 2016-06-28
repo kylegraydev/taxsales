@@ -29,6 +29,9 @@ gem 'jbuilder', '~> 1.2'
 
 gem 'mechanize', '~> 2.7', '>= 2.7.4'
 
+gem 'pry'
+gem 'pry-nav'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
