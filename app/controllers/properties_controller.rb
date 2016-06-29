@@ -3,6 +3,15 @@ class PropertiesController < ApplicationController
   def scrape
     @scraper = Scraper.new
     @scraper.create_properties_array
+
+    keywords = ["TIMESHARE", "EXCL USE", "PERIOD", "SEASON"]
+
+    @scraper.properties.select! do |property|
+      !keywords.any? do |keyword|
+         property.legal_desc.include?(keyword)
+       end
+    end
+
     update_database(@scraper)
   end
 
