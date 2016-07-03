@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160625020250) do
+ActiveRecord::Schema.define(version: 20160703023710) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,10 +24,6 @@ ActiveRecord::Schema.define(version: 20160625020250) do
     t.string "min_bid"
     t.string "grid_num"
     t.string "amount_owed"
-    t.binary "assesors_map"
-    t.binary "aerial_image"
-    t.binary "street_image"
-    t.binary "defaulted_bill"
   end
 
 end

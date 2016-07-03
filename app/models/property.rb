@@ -11,4 +11,9 @@ class Property < ActiveRecord::Base
   #   @assesors_map = data_hash[:assessor_map]
   # end
 
+  def add_image(img)
+    binding.pry
+    self.aerial_image = img.read
+  end
+
 end

@@ -7,6 +7,8 @@ gem "font-awesome-rails"
 
 gem 'pg'
 
+gem 'paperclip'
+
 # Use sqlite3 as the database for Active Record
 
 # Use SCSS for stylesheets
