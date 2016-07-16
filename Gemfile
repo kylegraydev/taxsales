@@ -7,7 +7,9 @@ gem "font-awesome-rails"
 
 gem 'pg'
 
-gem 'paperclip'
+gem 'paperclip', :git=> 'https://github.com/thoughtbot/paperclip', :ref => '523bd46c768226893f23889079a7aa9c73b57d68'
+
+gem 'aws-sdk', '~> 2.3'
 
 # Use sqlite3 as the database for Active Record
 
@@ -33,6 +35,8 @@ gem 'mechanize', '~> 2.7', '>= 2.7.4'
 
 gem 'pry'
 gem 'pry-nav'
+
+gem 'dotenv-rails', :groups =>[:development, :test]
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

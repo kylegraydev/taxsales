@@ -20,17 +20,16 @@ class PropertiesController < ApplicationController
           scraper.properties.each do |record|
             query = Property.find_by(parcel_num: record.parcel_num)
             # binding.pry
-                      if query
-                                  record.attributes.each do |attribute, value|
-                                              # binding.pry
-                                              if record[attribute] != nil
-                                                query[attribute] = value
-                                              end
-                                  end
-                          query.save
-                      else
-                        record.save
-                      end
+            if query
+              record.attributes.each do |attribute, value|
+                  if record[attribute] != nil
+                    query[attribute] = value
+                  end
+              end
+              query.save
+            else
+              record.save
+            end
           end
     redirect_to root_path
   end

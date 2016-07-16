@@ -7,6 +7,8 @@ take assessor number
   -go to pq lite
     -get image
 
+AMAZON aws / s3 for image hosting
+
 Google image?
 
 possibly zillow, trulia, netflix etx. listing links and estimated value
@@ -14,3 +16,5 @@ possibly zillow, trulia, netflix etx. listing links and estimated value
 FILTERS!
 
 store into database
+
+amount owed vs estimated property value

@@ -11,19 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160703023710) do
+ActiveRecord::Schema.define(version: 20160703024703) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "properties", force: true do |t|
-    t.string "parcel_num"
-    t.string "name"
-    t.string "address"
-    t.string "legal_desc"
-    t.string "min_bid"
-    t.string "grid_num"
-    t.string "amount_owed"
+    t.string   "parcel_num"
+    t.string   "name"
+    t.string   "address"
+    t.string   "legal_desc"
+    t.string   "min_bid"
+    t.string   "grid_num"
+    t.string   "amount_owed"
+    t.string   "aerial_image_file_name"
+    t.string   "aerial_image_content_type"
+    t.integer  "aerial_image_file_size"
+    t.datetime "aerial_image_updated_at"
   end
 
 end

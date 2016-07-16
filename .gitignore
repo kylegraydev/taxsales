@@ -1,0 +1,3 @@
+config/aws.yml
+config/database.yml
+.env
