@@ -4,11 +4,12 @@ class Property < ActiveRecord::Base
 
 
 
+  def add_defaulted_amount
+    scraper = Scraper3.new
+    amt = scraper.scrape(self)
+    self.defaulted_amount = amt
+    self.save
+  end
 
-
-
-  # def s3_credentials
-  #   {:bucket => "xxx", :access_key_id => "xxx", :secret_access_key => "xxx"}
-  # end
   validates_attachment_content_type :aerial_image, :content_type => /\Aimage\/.*\Z/
 end

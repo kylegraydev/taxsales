@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160703024703) do
+ActiveRecord::Schema.define(version: 20160716201735) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20160703024703) do
     t.string   "aerial_image_content_type"
     t.integer  "aerial_image_file_size"
     t.datetime "aerial_image_updated_at"
+    t.string   "defaulted_amount"
   end
 
 end
