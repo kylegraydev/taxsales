@@ -11,6 +11,10 @@ gem 'paperclip', :git=> 'https://github.com/thoughtbot/paperclip', :ref => '523b
 
 gem 'aws-sdk', '~> 2.3'
 
+# gem 'hidemyass'
+
+
+
 # Use sqlite3 as the database for Active Record
 
 # Use SCSS for stylesheets
@@ -32,6 +36,9 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 
 gem 'mechanize', '~> 2.7', '>= 2.7.4'
+# gem 'nokogiri', '~> 1.6'
+# gem 'nokogiri', '~> 1.5.0'
+gem 'rubillow', '~> 0.0.8'
 
 gem 'pry'
 gem 'pry-nav'

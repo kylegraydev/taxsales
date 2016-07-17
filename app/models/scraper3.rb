@@ -38,6 +38,11 @@ class Scraper3
     amount
   end
 
+  def get_valuation
+    prop = Rubillow::HomeValuation.search_results({:address => '834 E Fallbrook St', :citystatezip => 'california'})
+    zestimate = prop.price
+  end
+
 
 
 end
