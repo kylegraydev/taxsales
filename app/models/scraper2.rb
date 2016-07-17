@@ -6,7 +6,10 @@ class Scraper2
 
     a = Mechanize.new { |agent|
       agent.user_agent_alias = 'Mac Safari'
+      agent.set_proxy '202.47.236.250', 8080
     }
+
+
 
     disclaimer_page = a.get(url)
     search_page = disclaimer_page.links[4].click
@@ -19,7 +22,16 @@ class Scraper2
 
     finally = a.submit(form, button)
 
+
+
     finally.images[2].fetch.save file_path
+
+    # binding.pry
+
+    fixed_address = finally.css('div#divPclContent0').css('table').css('tr')[3].children[3].text
+
+    property.address = fixed_address
+
     file = File.open(file_path)
     property.aerial_image = file
     file.close
@@ -28,3 +40,7 @@ class Scraper2
   end
 
 end
+
+# prop = Property.find_by(id: 1637)
+# test = Scraper2.new
+# test.scrape(prop)

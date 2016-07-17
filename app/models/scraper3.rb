@@ -43,8 +43,6 @@ class Scraper3
     zestimate = prop.price
   end
 
-
-
 end
 
 # test = Scraper3.new

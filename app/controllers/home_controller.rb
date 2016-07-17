@@ -8,6 +8,8 @@ class HomeController < ApplicationController
   end
 
   def minor
+    @properties_obj.list_only_real_properties
+    @properties = @properties_obj.list
   end
 
   def update
@@ -19,8 +21,6 @@ class HomeController < ApplicationController
 
   def set_properties
     @properties_obj = ViewList.new
-    # @properties = @properties.list
-      # raise @properties.inspect
   end
 
 end

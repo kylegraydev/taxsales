@@ -1,20 +1,25 @@
-implement database
 
-take assessor number
-  -get tax doc
-    -get amount owed
 
-  -go to pq lite
-    -get image
 
-AMAZON aws / s3 for image hosting
 
-Google image?
 
-possibly zillow, trulia listing links and estimated value
 
-FILTERS!
 
-store into database
 
-amount owed vs estimated property value
+
+add amount owed to db
+
+refine address through parcelLite site
+
+if legitamate street address
+  add estimated property value to db
+
+
+Map!
+
+street view link
+
+FILTERS:
+one giant index page
+
+cards page for full listings
