@@ -13,6 +13,10 @@ gem 'aws-sdk', '~> 2.3'
 
 # gem 'hidemyass'
 
+gem 'gmaps4rails'
+
+gem 'geocoder'
+
 
 
 # Use sqlite3 as the database for Active Record
@@ -38,7 +42,7 @@ gem 'jbuilder', '~> 1.2'
 gem 'mechanize', '~> 2.7', '>= 2.7.4'
 # gem 'nokogiri', '~> 1.6'
 # gem 'nokogiri', '~> 1.5.0'
-gem 'rubillow', '~> 0.0.8'
+gem 'rubillow', :git => 'https://github.com/kylegraydev/rubillow'
 
 gem 'pry'
 gem 'pry-nav'

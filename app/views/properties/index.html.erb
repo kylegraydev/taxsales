@@ -1,15 +1,15 @@
-<div class="wrapper wrapper-content animated fadeInRight">
+<!-- <div class="wrapper wrapper-content animated fadeInRight">
 
   <% @properties.each do |property| %>
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-md-4">
 
           <div class="row  border-bottom white-bg dashboard-header">
 
               <div class="col-md-4">
                   <h2><%= property.address %></h2>
-                  <!-- <small>You have 42 messages and 6 notifications.</small> -->
-                  <ul class="list-group clear-list m-t">
+                  <! <small>You have 42 messages and 6 notifications.</small> -->
+                  <!-- <ul class="list-group clear-list m-t">
 
                       <li class="list-group-item fist-item">
                           <span class="pull-right">
@@ -21,7 +21,7 @@
 
                       <li class="list-group-item">
                           <span class="pull-right">
-                            $1,000
+                            <%= property.zestimate %>
                           </span>
                           <span class="label label-info">2</span>   Estimated Value
                       </li>
@@ -29,13 +29,13 @@
                           <span class="pull-right">
                               08:22 pm
                           </span>
-                          <span class="label label-primary">3</span> Open new shop
+                          <span class="label label-primary">3</span> Bedrooms
                       </li>
                       <li class="list-group-item">
                           <span class="pull-right">
                               11:06 pm
                           </span>
-                          <span class="label label-default">4</span> Call back to Sylvia
+                          <span class="label label-default">4</span> Bath
                       </li>
                       <li class="list-group-item">
                           <span class="pull-right">
@@ -44,7 +44,7 @@
                           <span class="label label-primary">5</span> Write a letter to Sandra
                       </li>
                   </ul>
-              </div>
+              </div> -->
 
             <!-- <div class="col-sm-6">
                 <div class="flot-chart dashboard-chart">
@@ -68,45 +68,70 @@
 
                 </div> -->
             <!-- </div> -->
-            <div class="col-md-4">
-                <div class="statistic-box">
-                    <h4>
-                        Project Beta progress
-                    </h4>
-                    <p>
-                        You have two project with not compleated task.
-                    </p>
-                    <div class="row text-center">
-                        <div class="col-lg-6">
-                            <canvas id="polarChart" width="80" height="80"></canvas>
-                            <h5>Kolter</h5>
-                        </div>
-                        <div class="col-lg-6">
-                            <canvas id="doughnutChart" width="78" height="78"></canvas>
-                            <h5>Maxtor</h5>
-                        </div>
-                    </div>
-                    <div class="m-t">
-                        <small>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</small>
-                    </div>
 
-                </div>
-            </div>
-
-                <div class="col-md-4">
+                <!-- <div class="col-md-4">
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
                             <h5>Profile Detail</h5>
                         </div>
                         <div>
                             <div class="ibox-content no-padding border-left-right">
-                                <%= image_tag @properties.first.aerial_image.url(:medium) %>
-                                <!-- # alt="image" class="img-responsive" -->
-                            </div>
+                                <%= image_tag property.aerial_image.url(:medium) %>
+                                <! <!# alt="image" class="img-responsive" -->
+                            <!-- </div>
                         </div>
                       </div>
                 </div>
         </div>
+    </div>
+  </div>
+  <% end %>
+</div> -->
+
+<div class="wrapper wrapper-content animated fadeInRight">
+  <% @properties.each do |property| %>
+
+    <div class="col-md-4">
+    <div class="ibox float-e-margins">
+
+        <div>
+            <div class="ibox-content no-padding border-left-right">
+                <img alt="image" class="img-responsive" src="<%= image_path(property.aerial_image.url) %>">
+            </div>
+            <div class="ibox-content profile-content">
+                <h4><strong><%= property.address %></strong></h4>
+
+                <div class="row m-t-lg">
+                    <div class="col-md-4">
+                        <h5><strong>3</strong> Bd</h5>
+                    </div>
+                    <div class="col-md-4">
+                        <h5><strong>2</strong> Ba</h5>
+                    </div>
+                    <div class="col-md-4">
+                        <h5><strong>1,200</strong> SqFt</h5>
+                    </div>
+                </div>
+
+                <p>Property value: <%= property.zestimate %></p>
+                <p>Defaulted amt: <%= property.defaulted_amount %></p>
+                <p>
+                </p>
+
+                <div class="user-button">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <!-- <button type="button" class="btn btn-primary btn-sm btn-block"><i class="fa fa-envelope"></i> See Details</button> -->
+                        </div>
+                        <div class="col-md-6">
+                            <%= link_to "See Details", property, class: "btn btn-default btn-sm btn-block" %>
+                            <!-- <button type="button" class="btn btn-default btn-sm btn-block"><i class="fa fa-coffee"></i> See Details</button> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
     </div>
   <% end %>
 </div>

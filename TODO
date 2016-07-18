@@ -1,18 +1,29 @@
 
 
+Views:  Welcome page
+  Index, tiled
+
+      Index, columned with map on left side with markers
+  index, list
+
+  show page
+
+
+    Tax bill snapshot?
+    description of property from zillow
+
+filter options:
 
 
 
 
+turn off update upon each access
+
+do not update picture if available
 
 
-
-add amount owed to db
-
-refine address through parcelLite site
-
-if legitamate street address
-  add estimated property value to db
+To Scrape:
+  get bedrooms & bathrooms
 
 
 Map!
@@ -23,3 +34,8 @@ FILTERS:
 one giant index page
 
 cards page for full listings
+
+PROXY:
+  get rolling proxy
+  verify
+  errors for bad connection

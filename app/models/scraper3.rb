@@ -29,18 +29,12 @@ class Scraper3
     # Defauted amount
     amount = response.parser.css('table#PaymentApplicationContent_dataTableDefaulted').css('tr')[2].elements[1].text
 
-    # TODO:   response.parser
     # base_url = "https://iwr.sdtreastax.com/SanDiegoTTCPaymentApplication/DefaultedDetails.aspx?parcelNumber="
 
     # search_url = base_url + property.parcel_num
 
     #
     amount
-  end
-
-  def get_valuation
-    prop = Rubillow::HomeValuation.search_results({:address => '834 E Fallbrook St', :citystatezip => 'california'})
-    zestimate = prop.price
   end
 
 end
