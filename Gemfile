@@ -3,8 +3,8 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.2'
 gem 'bootstrap-sass', '3.3.0.0'
+gem 'autoprefixer-rails'
 gem "font-awesome-rails"
-
 gem 'pg'
 
 gem 'paperclip', :git=> 'https://github.com/thoughtbot/paperclip', :ref => '523bd46c768226893f23889079a7aa9c73b57d68'
@@ -17,7 +17,7 @@ gem 'gmaps4rails'
 
 gem 'geocoder'
 
-
+gem 'jquery-rails'
 
 # Use sqlite3 as the database for Active Record
 
@@ -45,7 +45,6 @@ gem 'mechanize', '~> 2.7', '>= 2.7.4'
 gem 'rubillow', :git => 'https://github.com/kylegraydev/rubillow'
 
 gem 'pry'
-gem 'pry-nav'
 
 gem 'dotenv-rails', :groups =>[:development, :test]
 

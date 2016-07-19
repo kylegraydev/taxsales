@@ -10,29 +10,23 @@ class PropertiesController < ApplicationController
     @properties = @properties_obj.list
   end
 
-  def minor
-
-
-
-    # @hash = Gmaps4rails.build_markers() do |user, marker|
-    #   marker.lat user.latitude
-    #   marker.lng user.longitude
-    #
-    #
-    # end
-
-  end
-
   def show
     @property = Property.find_by(id: params[:id])
 
-    @hash = Gmaps4rails.build_markers(@property) do |prop, marker|
-      marker.lat prop.latitude
-      marker.lng prop.longitude
-    end
+    # @hash = Gmaps4rails.build_markers(@property) do |prop, marker|
+    #   marker.lat prop.latitude
+    #   marker.lng prop.longitude
+    #   marker.picture({
+    #       "url" => "http://people.mozilla.com/~faaborg/files/shiretoko/firefoxIcon/firefox-32.png",
+    #       "width" =>  32,
+    #       "height" => 32
+    #   })
 
-    @images = []
-    @images << @property.aerial_image.url
+    @marker = [ @property.latitude, @property.longitude ]
+
+
+    # @images = []
+    # @images << @property.aerial_image.url
 
   end
 

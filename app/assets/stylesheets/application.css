@@ -10,9 +10,8 @@
  *
  *= require_self
  *= require font-awesome
- *= require animate/animate.css
+
  *= require style
- *= require iCheck/custom.css
- *= require fullcalendar/fullcalendar.css
- *= require fullcalendar/fullcalendar.print.css
+
+ *= require new-style
  */

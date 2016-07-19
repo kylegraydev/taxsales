@@ -10,22 +10,17 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
-
-
-//= require jquery/jquery-2.1.1.js
-//= require jquery-ui/jquery-ui-1.10.4.min.js
-
-//= require inspinia.js
-
+//
+//
+// = require jquery
+//= jquery_ujs
+//= require turbolinks
 //= require bootstrap-sprockets
-//= require metisMenu/jquery.metisMenu.js
-//= require pace/pace.min.js
-//= require slimscroll/jquery.slimscroll.min.js
-//= require iCheck/icheck.min.js
-
-//= require fullcalendar/moment.min.js
-//= require fullcalendar/fullcalendar.min.js
-//= require peity/jquery.peity.min.js
-
-
+//
+//
+//= require underscore.js
 //= require gmaps/google
+
+// = require iscroll.js
+
+//= require_tree .
