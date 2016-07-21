@@ -1,39 +1,49 @@
 
 
+create pre-header with introduction and quick rundown of the site and some widgets
+get icon & site name image
+
+create mouseover options
+add menu bar options
+add 'search' to menu bar
+
 Views:  Welcome page
   Index, tiled
 
+hide map option
       Index, columned with map on left side with markers
   index, list
 
   show page
 
-
+    get assessors map
     Tax bill snapshot?
     description of property from zillow
 
-filter options:
 
-
-
-
-turn off update upon each access
-
+get missing .png
 do not update picture if available
 
 
 To Scrape:
   get bedrooms & bathrooms
 
-
-Map!
-
-street view link
+add street view link / layer
 
 FILTERS:
 one giant index page
 
-cards page for full listings
+display options:
+
+  all
+  remove 'land'
+
+create 'search'
+
+
+find out how to create services
+create services to scrape the rest of the database
+
 
 PROXY:
   get rolling proxy
