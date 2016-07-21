@@ -3,7 +3,7 @@
     <div class="one-quarter-column">
 
               <div id="wrapper">
-                      <div>
+                      <div class="scroller_wrapper">
                               <div class="head">
                                   <h1><%= @property.address %></h1>
                               </div>
@@ -62,26 +62,18 @@
 
 
 <script type="text/javascript">
-    var myScroll;
-    $(document).ready(function() {
 
-        myScroll = new IScroll('#wrapper', {
-          zoom: true,
-          mouseWheel: true
-        })
-    });
 
 
       coords = { lat: parseFloat( <%= @marker[0] %> ) , lng: parseFloat( <%= @marker[1] %> ) }
 
       var map;
       function initMap() {
-        // coords = { lat: parseFloat(map_hash[0].lat) , lng: parseFloat(map_hash[0].lng) }
-
         map = new google.maps.Map(document.getElementById('map'), {
           center: coords,
           zoom: 11
         });
+
 
         // var panorama = new google.maps.StreetViewPanorama(document.getElementById('map'), panoramaOptions);
         //

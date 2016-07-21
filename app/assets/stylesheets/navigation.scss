@@ -1,0 +1,30 @@
+.navbar-fs {
+  margin-bottom: 0;
+  background-color: rgb(62, 130, 247);
+}
+
+.nav-heading {
+  color: white;
+  font-size: 22px;
+  font-family: assistant;
+  line-height: center;
+  padding-left: 5%;
+  padding-top: 6px;
+  float:left;
+}
+
+.nav-menu ul{
+    float:right;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    padding-right: 10%;
+}
+
+.nav-menu li{
+  // display: inline-block;
+  float: left;
+  width: 120px;
+  display: block;
+  padding-top: 13px;
+}

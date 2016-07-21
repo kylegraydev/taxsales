@@ -1,45 +1,87 @@
-<div class="wrapper wrapper-content animated fadeInRight">
-  <% @properties.each do |property| %>
+<div class="index-main">
+          <div class="map-space">
+            <div id="map" style=''></div>
+          </div>
+<div id="wrapper">
+  <ul class="prop-list">
+    <% @properties.each do |property| %>
 
-    <div class="col-md-4">
-    <div class="ibox float-e-margins">
 
-        <div>
-            <div class="ibox-content no-padding border-left-right">
-                <img alt="image" class="img-responsive" src="<%= image_path(property.aerial_image.url) %>">
-            </div>
-            <div class="ibox-content profile-content">
-                <h4><strong><%= property.address %></strong></h4>
+      <li class="prop-tile">
+        <div class="inner-tile">
+              <div class="img">
+                  <img alt="image" class="img-responsive" src="<%= image_path(property.aerial_image.url) %>">
+              </div>
+              <div class="prop-box">
+                  <h4><strong><%= property.address %></strong></h4>
 
-                <div class="row m-t-lg">
-                    <div class="col-md-4">
-                        <h5><strong>3</strong> Bd</h5>
-                    </div>
-                    <div class="col-md-4">
-                        <h5><strong>2</strong> Ba</h5>
-                    </div>
-                    <div class="col-md-4">
-                        <h5><strong>1,200</strong> SqFt</h5>
-                    </div>
-                </div>
+                  <div class="row m-t-lg">
+                      <div class="col-md-4">
+                          <h5><strong>3</strong> Bd</h5>
+                      </div>
+                      <div class="col-md-4">
+                          <h5><strong>2</strong> Ba</h5>
+                      </div>
+                      <div class="col-md-4">
+                          <h5><strong>1,200</strong> SqFt</h5>
+                      </div>
+                  </div>
 
-                <p>Property value: <%= property.zestimate %></p>
-                <p>Defaulted amt: <%= property.defaulted_amount %></p>
-                <p>
-                </p>
+                  <p>Property value: <span class="amount"><%= property.zestimate %></span></p>
+                  <p>Defaulted amt: <span class="amount"><%= property.defaulted_amount %></span></p>
+                          <div class="user-button">
+                              <div class="row">
+                                  <div class="col-md-6">
+                                  </div>
+                                  <div class="col-md-6">
+                                      <%= link_to "See Details", property, class: "btn-style btn btn-default btn-sm btn-block " %>
+                                  </div>
+                              </div>
+                          </div>
+              </div> <!-- end prop box  -->
 
-                <div class="user-button">
-                    <div class="row">
-                        <div class="col-md-6">
-                        </div>
-                        <div class="col-md-6">
-                            <%= link_to "See Details", property, class: "btn btn-default btn-sm btn-block" %>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-      </div>
-    </div>
-  <% end %>
+            </div><!-- end inner tile -->
+        </li>
+    <% end %>
+
+  </ul>
 </div>
+</div>
+
+<script src="//maps.google.com/maps/api/js?v=3.23&key=AIzaSyAGwFAgG_E78rHdI3ndmwym-7x8RA5Fn_g"></script>
+<script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
+
+<script type="text/javascript">
+//
+var myScroll;
+$(document).ready(function() {
+//
+    myScroll = new IScroll('#wrapper', {
+      zoom: true,
+      mouseWheel: true
+    });
+});
+
+// var map;
+// function initMap() {
+//   map = new google.maps.Map(document.getElementById('map'), {
+//     center: {lat: -34.397, lng: 150.644},
+//     zoom: 11
+//   });
+// };
+
+handler = Gmaps.build('Google');
+handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+  markers = handler.addMarkers(<%=raw @hash.to_json %>);
+  handler.bounds.extendWith(markers);
+  handler.fitMapToBounds();
+});
+
+google.maps.event.trigger(map, 'resize');
+
+
+// setTimeout(function(){
+//          myScroll.refresh();
+//       }, 500);
+
+</script>

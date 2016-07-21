@@ -14,12 +14,12 @@
 //
 // = require jquery
 //= jquery_ujs
+//= require underscore.js
+//= require gmaps/google
 //= require turbolinks
 //= require bootstrap-sprockets
 //
 //
-//= require underscore.js
-//= require gmaps/google
 
 // = require iscroll.js
 

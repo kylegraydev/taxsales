@@ -1,0 +1,43 @@
+<% @properties.each do |property| %>
+
+  <!-- <div class="col-sm-4"> -->
+  <div class="ibox float-e-margins">
+
+      <div>
+          <div class="ibox-content no-padding border-left-right">
+              <img alt="image" class="img-responsive" src="<%= image_path(property.aerial_image.url) %>">
+          </div>
+          <div class="ibox-content profile-content">
+              <h4><strong><%= property.address %></strong></h4>
+
+              <div class="row m-t-lg">
+                  <div class="col-md-4">
+                      <h5><strong>3</strong> Bd</h5>
+                  </div>
+                  <div class="col-md-4">
+                      <h5><strong>2</strong> Ba</h5>
+                  </div>
+                  <div class="col-md-4">
+                      <h5><strong>1,200</strong> SqFt</h5>
+                  </div>
+              </div>
+
+              <p>Property value: <%= property.zestimate %></p>
+              <p>Defaulted amt: <%= property.defaulted_amount %></p>
+              <p>
+              </p>
+
+              <div class="user-button">
+                  <div class="row">
+                      <div class="col-md-6">
+                      </div>
+                      <div class="col-md-6">
+                          <%= link_to "See Details", property, class: "btn btn-default btn-sm btn-block" %>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+  <!-- </div> -->
+<% end %>
