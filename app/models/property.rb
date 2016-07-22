@@ -27,12 +27,6 @@ class Property < ActiveRecord::Base
   # end
 
 
-  def catch_upsc
-    self.fix_address_and_add_aerial_view
-    self.add_defaulted_amount
-    self.get_valuation
-  end
-
 
 
   validates_attachment_content_type :aerial_image, :content_type => /\Aimage\/.*\Z/
