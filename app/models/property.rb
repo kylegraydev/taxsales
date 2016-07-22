@@ -49,7 +49,7 @@ class Property < ActiveRecord::Base
     # details.edited_facts[:homeDetails]   #URL to Zillow Listing
   end
 
-  def catch_up
+  def catch_upsc
     self.fix_address_and_add_aerial_view
     self.add_defaulted_amount
     self.get_valuation

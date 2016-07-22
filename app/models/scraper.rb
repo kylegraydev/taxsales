@@ -23,7 +23,6 @@ class Scraper
   def format_response
     parcels = get_parcels
     array_for_manipulating = []
-
     parcels.children.each do |child|
       array_for_manipulating << child
     end
