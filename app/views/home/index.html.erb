@@ -1,39 +1,11 @@
-<div class="wrapper wrapper-content animated fadeInRight">
-    <div class="row">
-        <div class="col-lg-12">
-            <!-- <div class="text-center m-t-lg"> -->
-              <div class="table-responsive">
-                <table class="table table-striped">
-                  <thead>
-                  <tr>
-                    <th>Parcel Number</th>
-                    <th>Address</th>
-                    <th>Name</th>
-                    <th>Legal Description</th>
-                    <th>Minimum Bid</th>
-                    <th>Grid Number</th>
-                    <th><%= @properties.count %> Properties shown</th>
-                  </tr>
-                  </thead>
-                  <tbody>
+<div id="wrapper2">
+	<div id="scroller"></div>
+</div>
 
-                  <% @properties.each do |property| %>
-                    <tr>
-                      <td><%= property.parcel_num %></td>
-                      <td><%= property.address %></td>
-                      <td><%= property.name %></td>
-                      <td><%= property.legal_desc %></td>
-                      <td><%= property.min_bid %></td>
+<div class="starfield" id="starfield1">
+	<div id="stars1"></div>
+</div>
 
-                      <td><%= property.grid_num %></td>
-                      <td><%= image_tag property.aerial_image.url(:thumb) %>
-                    </tr>
-                  <% end %>
-
-                  </tbody>
-                </table>
-              </div>
-            <!-- </div> -->
-        </div>
-    </div>
+<div class="starfield" id="starfield2">
+	<div id="stars2"></div>
 </div>
