@@ -1,19 +1,21 @@
-<div style="padding-top: 50px;">
-  <div style="position: relative;width: 50%;height: 100vh;float: left;background-color: olivedrab;box-sizing: border-box;">
+<div style="padding-top: 44px;">
+  <div style="width: 50%;height: 100vh;float: left;background-color: olivedrab;box-sizing: border-box;">
     <div id="map"></div>
   </div>
   <div id="wrapper">
-    <div style="position: relative; width: 50%;float: right;box-sizing: border-box;box-shadow: -5px 0px 5px rgba(0, 0, 0, .5);">
+    <div style="width: 50%;float: right;box-sizing: border-box;box-shadow: -5px 0px 5px rgba(0, 0, 0, .5);z-index:1;">
       <% @properties.each do |property| %>
           <div style="margin: 1px; box-sizing: border-box; width: 49%;position: relative;float: left;">
 
               <img alt="image" style="display: inline-block; width: 100%; height: auto; vertical-align: middle;" src="<%= image_path(property.aerial_image.url) %>">
 
 
-                    <div style="position: absolute;top: 0;color:#fff;text-shadow:0 0 3px rgba(0,0,0,.5);">
+                    <div style="position: absolute;top: 0;color:#e6e6e6;
+6px 6px 0px rgba(0,0,0,0.2);">
                         <h4 style="text-align: center;   ">  <strong>   <%= property.address %></strong></h4>
                     </div>
-                    <div style="position: absolute;bottom: 0;color:#fff;text-shadow:0 0 3px rgba(0,0,0,.5);">
+                    <div style="position: absolute;bottom: 0;color:#e6e6e6;
+6px 6px 0px rgba(0,0,0,0.2);">
                                 <h5><strong>3</strong> Bd</h5>
 
                                 <h5><strong>2</strong> Ba</h5>
@@ -24,10 +26,6 @@
                         <p>Property value: <span class="amount"><%= property.zestimate %></span></p>
                         <p>Defaulted amt: <span class="amount"><%= property.defaulted_amount %></span></p>
                     </div>
-
-
-
-
         </div>
       <% end %>
     </div>
@@ -35,11 +33,12 @@
 </div>
 
 
+
 <script src="//maps.google.com/maps/api/js?v=3.23&key=AIzaSyAGwFAgG_E78rHdI3ndmwym-7x8RA5Fn_g"></script>
 <script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
 
 <script type="text/javascript">
-//
+
 var indexScroll;
 $(document).ready(function() {
 //
@@ -49,13 +48,13 @@ $(document).ready(function() {
     });
 });
 
-// var map;
-// function initMap() {
-//   map = new google.maps.Map(document.getElementById('map'), {
-//     center: {lat: -34.397, lng: 150.644},
-//     zoom: 11
-//   });
-// };
+var map;
+function initMap() {
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: -34.397, lng: 150.644},
+    zoom: 11
+  });
+};
 
 handler = Gmaps.build('Google');
 handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
@@ -64,11 +63,11 @@ handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
   handler.fitMapToBounds();
 });
 
-Google.maps.event.trigger(map, 'resize');
+// handler.event.trigger(map, 'resize');
 
 
-// setTimeout(function(){
-//          myScroll.refresh();
-//       }, 500);
+setTimeout(function(){
+         indexScroll.refresh();
+      }, 500);
 
 </script>

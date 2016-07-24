@@ -18,8 +18,9 @@
 //= require gmaps/google
 //= require turbolinks
 //= require bootstrap-sprockets
-//
-//
+// require imagesloaded.pkgd.js
+// require skrollr
+
 
 // = require iscroll.js
 

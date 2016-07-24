@@ -10,12 +10,8 @@
  *
  *
  *= require_self
- *= require var.scss
  *= require font-awesome
-
  *= require style
-
  *= require new-style
- *= require navigation.css
- *= require header
+ *= require navigation
  */
