@@ -95,6 +95,8 @@ GEM
       thor (>= 0.14, < 2.0)
     json (1.8.3)
     json_pure (2.0.1)
+    lazyload-rails (0.3.1)
+      nokogiri (~> 1.5)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -197,6 +199,7 @@ DEPENDENCIES
   gmaps4rails
   jbuilder (~> 1.2)
   jquery-rails
+  lazyload-rails
   mechanize (~> 2.7, >= 2.7.4)
   paperclip!
   pg

@@ -19,6 +19,8 @@ gem 'geocoder'
 
 gem 'jquery-rails'
 
+gem "lazyload-rails"
+
 # Use sqlite3 as the database for Active Record
 
 # Use SCSS for stylesheets

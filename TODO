@@ -1,21 +1,22 @@
+**adding from pq site
+use type
+total land and improvements tax value
+bedrooms
+bath
+year built
+bldg sqft
+lot acres
 
-***Order of gathering property info***
+screen capture bill & assessors map
 
-1.) Main scan from update properties
-    var = UpdateProperties.new
-    var.run
-    ---updates database (add and remove)---
+only use street address and ZIP for zillow results
 
-in blocks of ten per hour maybe?
-find one with blank attributes
-2.) UpdateParcel.get_aerial(property)
-    ---fixes address formatting for zillow ---
-3.) UpdateZillow.get_valuation
-    UpdateZillow.get_prop_details
+add when auction will be
 
 add errors for no property found
-add when auction will be
+
 create pre-header with introduction and quick rundown of the site and some widgets
+
 get icon & site name image
 
 create mouseover options

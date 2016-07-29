@@ -16,7 +16,6 @@ class UpdateProperties
     parcel_nodes_array = format_response(parcels)
 
     create_properties(parcel_nodes_array)
-    # remove_timeshares
     compare_to_db
   end
 

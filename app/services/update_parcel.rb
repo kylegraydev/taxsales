@@ -9,17 +9,19 @@ class UpdateParcel
   end
 
   def run
-    find_props_to_update
-    get_ip
-    @props.each do |prop|
-      get_aerial(prop)
-      sleep(1)
-    end
+    # 10.times do
+        find_props_to_update
+        get_ip
+        @props.each do |prop|
+          get_aerial(prop)
+          sleep(30)
+        end
+      # end
   end
 
   def find_props_to_update
     puts "Finding props"
-    @props = Property.where("aerial_image_file_name is NULL").limit(10)
+    @props = Property.where("aerial_image_file_name is NULL").limit(1)
   end
 
   def get_ip
@@ -68,12 +70,21 @@ class UpdateParcel
 
     finally.images[2].fetch.save file_path
     puts "Fixing address"
-    # binding.pry
+    binding.pry
     fixed_address = finally.css('div#divPclContent0').css('table').css('tr')[3].children[3].text
 
 # ----------Sometimes address will only be listed as "CA", don't save this-----------
     if ( fixed_address.strip.length > 2 )
-      property.address = fixed_address
+      # binding.pry
+
+      street_address = fixed_address[/(.*)\r\n/].strip
+
+      zip = fixed_address[/\r\n(.*)/]
+      zip = zip[2..-1]
+      zip = zip[/\d.*/]
+
+      property.street_address = street_address
+      property.zip = zip
     end
 
     file = File.open(file_path)

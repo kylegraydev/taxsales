@@ -10,7 +10,7 @@ class UpdateZillow
   end
 
   def find_props_to_update
-    @props = Property.where("aerial_image_file_name is NULL and zpid is NULL").limit(10)
+    @props = Property.where("aerial_image_file_name is NOT NULL and zpid is NULL")
   end
 
   def get_valuation

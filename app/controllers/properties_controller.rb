@@ -9,8 +9,10 @@ class PropertiesController < ApplicationController
     @properties_obj.list_only_real_properties
     @properties = @properties_obj.list
     @hash = Gmaps4rails.build_markers(@properties) do |prop, marker|
-      marker.lat prop.latitude
-      marker.lng prop.longitude
+      if !prop.latitude.nil?
+        marker.lat prop.latitude
+        marker.lng prop.longitude
+      end
     end
   end
 
