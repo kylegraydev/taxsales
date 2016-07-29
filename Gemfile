@@ -11,7 +11,7 @@ gem 'paperclip', :git=> 'https://github.com/thoughtbot/paperclip', :ref => '523b
 
 gem 'aws-sdk', '~> 2.3'
 
-# gem 'hidemyass'
+gem 'whenever', :require => false
 
 gem 'gmaps4rails'
 

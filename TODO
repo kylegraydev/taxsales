@@ -1,5 +1,20 @@
 
+***Order of gathering property info***
 
+1.) Main scan from update properties
+    var = UpdateProperties.new
+    var.run
+    ---updates database (add and remove)---
+
+in blocks of ten per hour maybe?
+find one with blank attributes
+2.) UpdateParcel.get_aerial(property)
+    ---fixes address formatting for zillow ---
+3.) UpdateZillow.get_valuation
+    UpdateZillow.get_prop_details
+
+add errors for no property found
+add when auction will be
 create pre-header with introduction and quick rundown of the site and some widgets
 get icon & site name image
 
@@ -7,26 +22,22 @@ create mouseover options
 add menu bar options
 add 'search' to menu bar
 
-Views:  Welcome page
-  Index, tiled
 
+
+Navbar:
+
+
+Index Page:
 hide map option
-      Index, columned with map on left side with markers
+      make markers have popups of property
   index, list
 
-  show page
-
-    get assessors map
-    Tax bill snapshot?
-    description of property from zillow
-
+show page
+get assessors map
+Tax bill snapshot?
 
 get missing .png
 do not update picture if available
-
-
-To Scrape:
-  get bedrooms & bathrooms
 
 add street view link / layer
 
@@ -39,13 +50,3 @@ display options:
   remove 'land'
 
 create 'search'
-
-
-find out how to create services
-create services to scrape the rest of the database
-
-
-PROXY:
-  get rolling proxy
-  verify
-  errors for bad connection
