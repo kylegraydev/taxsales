@@ -20,10 +20,10 @@ class UpdateZillow
       # binding.pry
       if zillow_result.zpid.nil?
         puts "property not found"
-        prop.zpid = "N/A"
+        prop.zillow_result.zpid = "N/A"
       else
-        prop.zpid = zillow_result.zpid
-        prop.zestimate = zillow_result.price
+        prop.zillow_result.zpid = zillow_result.zpid
+        prop.zillow_result.zestimate = zillow_result.price
         get_prop_details(prop)
         puts prop
       end
@@ -33,17 +33,17 @@ class UpdateZillow
   end
 
     def get_prop_details(prop)
-      zpid = prop.zpid
+      zpid = prop.zillow_result.zpid
       details = Rubillow::PropertyDetails.updated_property_details({ :zpid => zpid })
-      prop.use_code = tails.edited_facts[:use_code]
-      prop.bedrooms = details.edited_facts[:bedrooms]
-      prop.bathrooms = details.edited_facts[:bathrooms]
-      prop.finished_sq_ft = details.edited_facts[:finished_sq_ft]
-      prop.lot_size_sq_ft = details.edited_facts[:lot_size_sq_ft]
-      prop.year_built = details.edited_facts[:year_built]
+      prop.zillow_result.use_code = details.edited_facts[:use_code]
+      prop.zillow_result.bedrooms = details.edited_facts[:bedrooms]
+      prop.zillow_result.bathrooms = details.edited_facts[:bathrooms]
+      prop.zillow_result.finished_sq_ft = details.edited_facts[:finished_sq_ft]
+      prop.zillow_result.lot_size_sq_ft = details.edited_facts[:lot_size_sq_ft]
+      prop.zillow_result.year_built = details.edited_facts[:year_built]
       # details.edited_facts[:images]
       # details.edited_facts[:images_count]
-      prop.zillow_url = details.edited_facts[:homeDetails]   #URL to Zillow Listing
+      prop.zillow_result.zillow_url = details.edited_facts[:homeDetails]   #URL to Zillow Listing
     end
 
 end

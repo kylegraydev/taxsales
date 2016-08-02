@@ -11,10 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160729033917) do
+ActiveRecord::Schema.define(version: 20160802080314) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "assessments", force: true do |t|
+    t.integer  "property_id"
+    t.string   "use_type"
+    t.string   "year_assessed"
+    t.string   "total_value"
+    t.string   "bdr"
+    t.string   "ba"
+    t.string   "bldg_sqft"
+    t.string   "lot_acres"
+    t.string   "year_built"
+    t.string   "sale_amount"
+    t.string   "recording_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "street_address"
+    t.string   "zip"
+  end
 
   create_table "properties", force: true do |t|
     t.string   "parcel_num"
@@ -28,10 +46,12 @@ ActiveRecord::Schema.define(version: 20160729033917) do
     t.integer  "aerial_image_file_size"
     t.datetime "aerial_image_updated_at"
     t.string   "defaulted_amount"
-    t.string   "zestimate"
     t.string   "latitude"
     t.string   "longitude"
-    t.string   "zpid"
+  end
+
+  create_table "zillow_results", force: true do |t|
+    t.integer  "property_id"
     t.string   "use_code"
     t.string   "bedrooms"
     t.string   "bathrooms"
@@ -39,9 +59,9 @@ ActiveRecord::Schema.define(version: 20160729033917) do
     t.string   "lot_size_sq_ft"
     t.string   "year_built"
     t.string   "zillow_url"
-    t.string   "street_address"
-    t.string   "city"
-    t.string   "zip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "zestimate"
   end
 
 end

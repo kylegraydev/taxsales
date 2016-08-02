@@ -60,33 +60,59 @@ class UpdateParcel
     search_page = disclaimer_page.links[4].click
 
     search_page.forms.first.field(:name => 'apn').value = property.parcel_num
+    # property.parcel_num
     finally = search_page.forms.first.submit
+
 # ----------Original site version had a 2 step form system----------------------------
         # form = results_page.forms.first
         # button = results_page.forms.first.button_with(:value => 'submitResults')
         # finally = a.submit(form, button)
-# ------------------------------------------------------------------------------------
-    puts "Saving image locally"
+# ------------------Saving in case they revert back-----------------------------------
 
-    finally.images[2].fetch.save file_path
-    puts "Fixing address"
-    binding.pry
+
+
+    # Use type
+    property.assessment[:use_type] = finally.css('.tblDetails td[4]').children.first.text
+
+    # ASSESSMENTS
+    # year assessed
+    property.assessment[:year_assessed] = finally.css('.tblDetails tr[2]').last.children[3].text
+    # total land and improvements value
+    property.assessment[:total_value] = finally.css('.tblDetails tr[6] td[2]').text
+
+    # Property Info
+    # bedrooms
+    property.assessment[:bdr] = finally.css('.tblDetails tr[10] td[2]').text
+    # baths
+    property.assessment[:ba] = finally.css('.tblDetails tr[11] td[2]').text
+    # bldg/living area
+    property.assessment[:bldg_sqft] = finally.css('.tblDetails tr[12] td[2]').text
+    # year built
+    property.assessment[:year_built] = finally.css('.tblDetails tr[13] td[2]').text
+    # lot acres
+    property.assessment[:lot_acres] = finally.css('.tblDetails tr[14] td[2]').text
+
+    # RECENT SALE HISTORY
+    # recording date
+    property.assessment[:recording_date] = finally.css('.tblDetails tr[17] td[2]').text
+    # sale amount
+    property.assessment[:sale_amount] = finally.css('.tblDetails tr[19] td[2]').text
+
+
     fixed_address = finally.css('div#divPclContent0').css('table').css('tr')[3].children[3].text
-
 # ----------Sometimes address will only be listed as "CA", don't save this-----------
     if ( fixed_address.strip.length > 2 )
-      # binding.pry
-
+      puts "adding formatted address"
       street_address = fixed_address[/(.*)\r\n/].strip
-
       zip = fixed_address[/\r\n(.*)/]
       zip = zip[2..-1]
       zip = zip[/\d.*/]
-
-      property.street_address = street_address
-      property.zip = zip
+      property.assessment.street_address = street_address
+      property.assessment.zip = zip
     end
 
+    puts "Saving image locally"
+    finally.images[2].fetch.save file_path
     file = File.open(file_path)
     property.aerial_image = file
     file.close
