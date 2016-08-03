@@ -2,11 +2,8 @@
 require 'cgi'
 require 'net/http'
 
-class UpdateParcel
+class UpdateAssessment
   attr_accessor :ip, :port
-
-  def initialize
-  end
 
   def run
     # 10.times do
@@ -14,7 +11,8 @@ class UpdateParcel
         get_ip
         @props.each do |prop|
           get_aerial(prop)
-          sleep(30)
+          # get_coordinates
+          sleep(3)
         end
       # end
   end
@@ -37,25 +35,26 @@ class UpdateParcel
 
     url = 'https://assr.parcelquest.com/home/county/sdx'
     file_path = "lib/assets/aerial_image.png"
-  begin
-  puts "Mechanizing"
+    begin
+    puts "Mechanizing"
 
-    a = Mechanize.new { |agent|
-      agent.user_agent_alias = 'Mac Safari'
-      agent.open_timeout = 5
-      agent.set_proxy @ip, @port
-    }
+      a = Mechanize.new { |agent|
+        agent.user_agent_alias = 'Mac Safari'
+        agent.open_timeout = 5
+        agent.set_proxy @ip, @port
+        agent.ignore_bad_chunking = true
+      }
 
-    a.agent.http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+      a.agent.http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
-    disclaimer_page = a.get(url)
-  rescue SystemCallError, StandardError
-      puts "proxy connection error"
-      sleep(1)
-      get_ip
-      a.set_proxy @ip, @port
-      retry
-    end
+      disclaimer_page = a.get(url)
+    rescue SystemCallError, StandardError
+        puts "proxy connection error"
+        sleep(1)
+        get_ip
+        a.set_proxy @ip, @port
+        retry
+      end
 
     search_page = disclaimer_page.links[4].click
 
@@ -69,34 +68,34 @@ class UpdateParcel
         # finally = a.submit(form, button)
 # ------------------Saving in case they revert back-----------------------------------
 
-
+    assessment_hash = {}
 
     # Use type
-    property.assessment[:use_type] = finally.css('.tblDetails td[4]').children.first.text
+    assessment_hash[:use_type] = finally.css('.tblDetails td[4]').children.first.text
 
     # ASSESSMENTS
     # year assessed
-    property.assessment[:year_assessed] = finally.css('.tblDetails tr[2]').last.children[3].text
+    assessment_hash[:year_assessed] = finally.css('.tblDetails tr[2]').last.children[3].text
     # total land and improvements value
-    property.assessment[:total_value] = finally.css('.tblDetails tr[6] td[2]').text
+    assessment_hash[:total_value] = finally.css('.tblDetails tr[6] td[2]').text
 
     # Property Info
     # bedrooms
-    property.assessment[:bdr] = finally.css('.tblDetails tr[10] td[2]').text
+    assessment_hash[:bdr] = finally.css('.tblDetails tr[10] td[2]').text
     # baths
-    property.assessment[:ba] = finally.css('.tblDetails tr[11] td[2]').text
+    assessment_hash[:ba] = finally.css('.tblDetails tr[11] td[2]').text
     # bldg/living area
-    property.assessment[:bldg_sqft] = finally.css('.tblDetails tr[12] td[2]').text
+    assessment_hash[:bldg_sqft] = finally.css('.tblDetails tr[12] td[2]').text
     # year built
-    property.assessment[:year_built] = finally.css('.tblDetails tr[13] td[2]').text
+    assessment_hash[:year_built] = finally.css('.tblDetails tr[13] td[2]').text
     # lot acres
-    property.assessment[:lot_acres] = finally.css('.tblDetails tr[14] td[2]').text
+    assessment_hash[:lot_acres] = finally.css('.tblDetails tr[14] td[2]').text
 
     # RECENT SALE HISTORY
     # recording date
-    property.assessment[:recording_date] = finally.css('.tblDetails tr[17] td[2]').text
+    assessment_hash[:recording_date] = finally.css('.tblDetails tr[17] td[2]').text
     # sale amount
-    property.assessment[:sale_amount] = finally.css('.tblDetails tr[19] td[2]').text
+    assessment_hash[:sale_amount] = finally.css('.tblDetails tr[19] td[2]').text
 
 
     fixed_address = finally.css('div#divPclContent0').css('table').css('tr')[3].children[3].text
@@ -107,9 +106,14 @@ class UpdateParcel
       zip = fixed_address[/\r\n(.*)/]
       zip = zip[2..-1]
       zip = zip[/\d.*/]
-      property.assessment.street_address = street_address
-      property.assessment.zip = zip
+      # binding.pry
+      assessment_hash[:street_address] = street_address
+      assessment_hash[:zip] = zip
     end
+
+    @assessment = Assessment.new(assessment_hash)
+    property.assessment = @assessment
+    @assessment.save
 
     puts "Saving image locally"
     finally.images[2].fetch.save file_path
@@ -118,6 +122,11 @@ class UpdateParcel
     file.close
     property.save
     File.delete(file_path) if File.exist?(file_path)
+  end
+
+  def get_coordinates(prop)
+    Geocoder.coordinates(prop.assessment.address + " " + prop.assessment.zip , {} )
+    binding.pry
   end
 
 end

@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/kylegraydev/rubillow
-  revision: aafdb692fe3de173d9abc1e31a56004f7ddb85d3
+  revision: ae31a9e24cf92b9352ecef3dfef16cd8bde378dc
   specs:
     rubillow (0.0.8)
       nokogiri (~> 1.5.0)

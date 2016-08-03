@@ -10,40 +10,54 @@ class UpdateZillow
   end
 
   def find_props_to_update
-    @props = Property.where("aerial_image_file_name is NOT NULL and zpid is NULL")
+    # Only check zillow for properties that there is an assessment address & zip for -- produces better results
+    @props = Property.where("aerial_image_file_name is NOT NULL and zpid is NULL").limit(1)
   end
 
   def get_valuation
     @props.each do |prop|
-      address = prop.address
-      zillow_result = Rubillow::HomeValuation.search_results({:address => address, :citystatezip => 'california'})
+
+        address = prop.address
+        zip = prop.assessment.zip
+
+      zillow_api_result = Rubillow::HomeValuation.search_results( {:address => address, :citystatezip => zip} )
+      zillow_hash = {}
       # binding.pry
-      if zillow_result.zpid.nil?
+      if zillow_api_result.zpid.nil?
         puts "property not found"
-        prop.zillow_result.zpid = "N/A"
+        prop.zpid = "N/A"
       else
-        prop.zillow_result.zpid = zillow_result.zpid
-        prop.zillow_result.zestimate = zillow_result.price
-        get_prop_details(prop)
-        puts prop
+        prop.zpid = zillow_api_result.zpid
+        zillow_hash[:zestimate] = zillow_api_result.price
+        # If prop has a zpid, get full details for zillow_result
+        get_prop_details(prop, zillow_hash)
+        # binding.pry
+        @zillow = ZillowResult.new(zillow_hash)
+        prop.zillow_result = @zillow
+        @zillow.save
       end
       prop.save
     end
-
   end
 
-    def get_prop_details(prop)
-      zpid = prop.zillow_result.zpid
+    def get_prop_details(prop, zillow_hash)
+      zpid = prop.zpid
       details = Rubillow::PropertyDetails.updated_property_details({ :zpid => zpid })
-      prop.zillow_result.use_code = details.edited_facts[:use_code]
-      prop.zillow_result.bedrooms = details.edited_facts[:bedrooms]
-      prop.zillow_result.bathrooms = details.edited_facts[:bathrooms]
-      prop.zillow_result.finished_sq_ft = details.edited_facts[:finished_sq_ft]
-      prop.zillow_result.lot_size_sq_ft = details.edited_facts[:lot_size_sq_ft]
-      prop.zillow_result.year_built = details.edited_facts[:year_built]
+      zillow_hash[:use_code] = details.edited_facts[:use_code]
+      zillow_hash[:bedrooms] = details.edited_facts[:bedrooms]
+      zillow_hash[:bathrooms] = details.edited_facts[:bathrooms]
+      zillow_hash[:finished_sq_ft] = details.edited_facts[:finished_sq_ft]
+      zillow_hash[:lot_size_sq_ft] = details.edited_facts[:lot_size_sq_ft]
+      zillow_hash[:year_built] = details.edited_facts[:year_built]
       # details.edited_facts[:images]
       # details.edited_facts[:images_count]
-      prop.zillow_result.zillow_url = details.edited_facts[:homeDetails]   #URL to Zillow Listing
+      zillow_hash[:zillow_url] = details.edited_facts[:homeDetails]   #URL to Zillow Listing
     end
+
+    # def get_zestimate
+    #   details = Rubillow::PropertyDetails.updated_property_details({ :zpid => zpid })
+    #   zillow_hash[:zestimate] = zillow_api_result.price
+    # end
+
 
 end

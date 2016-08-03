@@ -51,7 +51,10 @@ class UpdateProperties
       info_hash = {}
       info_hash[:parcel_num] = property_object.children[3].elements[0].text.strip
       info_hash[:name] = property_object.children[5].elements[0].text
-      info_hash[:address] = property_object.children[7].elements[0].text
+
+      temp_address = property_object.children[7].elements[0].text
+      info_hash[:address] = temp_address.gsub(/^[0:" "]*/, "")
+
       info_hash[:legal_desc] = property_object.children[9].elements[0].text.strip
       info_hash[:min_bid] = property_object.children[11].elements[0].text
       info_hash[:grid_num] = property_object.children[13].elements[0].text
@@ -62,28 +65,6 @@ class UpdateProperties
       end
     end
   end
-
-  # def remove_timeshares
-  #   puts "Removing timeshares"
-  #   keywords = ["TIMESHARE", "EXCL USE", "PERIOD", "SEASON"]
-  #   puts @properties.count
-  #   x = 0
-  #   @properties.each do |property|
-  #     if (x == 2000)
-  #       puts "hey!"
-  #     end
-  #     x = x + 1
-  #
-  #        if keywords.any? do |keyword|
-  #             property.legal_desc.include?(keyword)
-  #           end
-  #
-  #           @properties.delete(property)
-  #        end
-  #
-  #   end
-  #   puts @properties.count
-  # end
 
   def compare_to_db
     puts @properties.count

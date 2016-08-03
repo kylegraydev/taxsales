@@ -18,7 +18,20 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
+set :output, 'log/cron.log'
 
-every 1.day :at => '5:42 pm' do
-  rake "update_database:sdtreas",   :environment => 'development'
+every 1.day :at => '5:00 pm' do
+  rake "update:properties", :environment => 'development'
 end
+
+# every 1.minute do
+#   rake "update:assessment"
+# end
+#
+# every 1.minute do
+#   rake "update:zillow"
+# end
+
+# every 5.minutes do
+#   rake "update:tax_bill"
+# end
