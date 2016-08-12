@@ -86,6 +86,12 @@ class UpdateProperties
         end
       end
       if present == false
+        if !entry.assessment.nil?
+          entry.assessment.delete
+        end
+        if !entry.zillow_result.nil?
+          entry.zillow_result.delete
+        end
         entry.destroy
       end
     end

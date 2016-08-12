@@ -1,21 +1,20 @@
-<div style="padding-top: 44px;position:relative;z-index: 1;">
-  <div style="width: 50%;height: 94vh;float: left;position: fixed; background-color: olivedrab;box-sizing: border-box;z-index:2;">
-    <div id="map"></div>
-  </div>
-  <!-- <div id="wrapper"> -->
-    <div style="position: relative; width: 50%;float: right;box-sizing: border-box;box-shadow: -5px 0px 5px rgba(0, 0, 0, .5);z-index:4;">
+<%= render 'searchbar' %>
+<div class="index-main">
+    <div class="main-map">
+      <div id="map-all"></div>
+    </div>
+
+    <div class="prop-list">
       <% @properties.each do |property| %>
-          <div style="margin: 1px; box-sizing: border-box; width: 49%;position: relative;float: left;">
+          <div class="prop-indiv">
             <%= link_to property do %>
-              <img alt="image" style="display: inline-block; width: 100%; height: auto; vertical-align: middle;" src="<%= image_path(property.aerial_image.url) %>">
+              <img alt="image" class="prop-img" src="<%= image_path(property.aerial_image.url) %>">
 
 
-                    <div style="position: absolute;top: 0;color:#e6e6e6;
-6px 6px 0px rgba(0,0,0,0.2);">
+                    <div class="prop-tile-head">
                         <h4 style="text-align: center;">  <strong>   <%= property.address %></strong></h4>
                     </div>
-                    <div style="position: absolute;bottom: 0;color:#e6e6e6;
-6px 6px 0px rgba(0,0,0,0.2);">
+                    <div class="prop-tile-details">
                                 <h5><strong>3</strong> Bd</h5>
 
                                 <h5><strong>2</strong> Ba</h5>
@@ -30,7 +29,6 @@
         </div>
       <% end %>
     </div>
-  <!-- </div> -->
 </div>
 
 
@@ -40,35 +38,13 @@
 
 <script type="text/javascript">
 
-var indexScroll;
-// $(document).ready(function() {
-// //
-//     indexScroll = new IScroll('#wrapper', {
-//       zoom: true,
-//       mouseWheel: true
-//     });
-// });
-
-var map;
-function initMap() {
-  map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: -34.397, lng: 150.644},
-    zoom: 11
-  });
-};
-
 handler = Gmaps.build('Google');
-handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+handler.buildMap({ provider: {}, internal: {id: 'map-all'}}, function(){
   markers = handler.addMarkers(<%=raw @hash.to_json %>);
   handler.bounds.extendWith(markers);
   handler.fitMapToBounds();
 });
 
 // handler.event.trigger(map, 'resize');
-
-
-// setTimeout(function(){
-//          indexScroll.refresh();
-//       }, 500);
 
 </script>

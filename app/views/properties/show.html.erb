@@ -84,8 +84,10 @@
 
 
         <div class="links">
-          <%= link_to "See Tax Bill", { url: "https://iwr.sdtreastax.com/SanDiegoTTCPaymentApplication/DefaultedDetails.aspx?parcelNumber=#{@property.parcel_num}" , :target => "_blank"}, class: "btn" %>
-          <%= link_to "View on Zillow", { url: "#{@property.zillow_result.zillow_url}", :target => "_blank" }, class: "btn" %>
+          <%= link_to "See Tax Bill", "https://iwr.sdtreastax.com/SanDiegoTTCPaymentApplication/DefaultedDetails.aspx?parcelNumber=#{@property.parcel_num}", :target => "_blank", class: "btn" %>
+          <% if @property.zillow_result %>
+            <%= link_to "View on Zillow", { url: "#{@property.zillow_result.zillow_url}", target: "_blank" }, class: "btn" %>
+          <% end %>
         </div>
 
         <div class="map-image-box">

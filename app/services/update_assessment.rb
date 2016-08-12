@@ -12,7 +12,7 @@ class UpdateAssessment
         get_ip
         @props.each do |prop|
           get_aerial(prop)
-          # get_coordinates
+          get_coordinates(prop)
           sleep(3)
         end
       # end
@@ -127,8 +127,11 @@ class UpdateAssessment
   end
 
   def get_coordinates(prop)
-    Geocoder.coordinates(prop.assessment.address + " " + prop.assessment.zip , {} )
-    binding.pry
+    coords = Geocoder.coordinates(prop.address + " " + prop.assessment.zip , {} )
+    # binding.pry
+    prop.latitude = coords[0]
+    prop.longitude= coords[1]
+    prop.save
   end
 
 end
