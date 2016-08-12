@@ -1,59 +1,97 @@
 
-  <div>
-    <div class="one-quarter-column">
-
-              <div id="wrapper">
-                      <div class="scroller_wrapper">
-                              <div class="head">
-                                  <h1><%= @property.address %></h1>
-                              </div>
-
-                              <div class="prop-column">
-                                    <div class="property-desc">
-                                      Amount Owed:
-                                    </div>
-                                    <div class="property-desc">
-                                      Estimated value:
-                                    </div>
-                                    <div class="property-desc">
-                                      Minimum Bid:
-                                    </div>
-                                    <div class="property-desc">
-                                      Use Code:
-                                    </div>
-                                    <div class="property-desc">
-                                      Bedrooms:
-                                    </div>
-                                    <div class="property-desc">
-                                      Baths:
-                                    </div>
-                                    <div class="property-desc">
-                                      SqFt:
-                                    </div>
-                                    <div class="property-desc">
-                                      Lot Size:
-                                    </div>
-                                    <div class="property-desc">
-                                      Parcel Number:
-                                    </div>
-                                    <div class="property-desc">
-                                      Name:
-                                    </div>
-                                    <div class="property-desc">
-                                      Legal Description:
-                                    </div>
-                                </div>
-                        </div>
-              </div>
-      </div>
+  <div class="show-box effect2">
 
 
+          <%= image_tag @property.aerial_image, :class => "aerial-image" %>
 
-      <div class="three-quarter-column">
-            <div id="map" style='width: 800px; height: 400px;'></div>
-            <!-- <div id="map-canvas" style='width: 200px; height: 100px;'></div> -->
-      </div>
 
+              <div class="show-info-box">
+                                    <h1><%= @property.address %></h1>
+
+                                      <div class="property-desc">
+                                        <div class="text-left">Amount Owed:<span class="pull-right"><%= @property.defaulted_amount %></span></div>
+                                      </div>
+
+                                      <div class="property-desc">
+                                        <div class="text-left">Total Value:<span class="pull-right"<%= @property.assessment.total_value %></span></div>
+                                      </div>
+                                      <% if @property.zillow_result %>
+                                        <div class="property-desc">
+                                          <div class="text-left">Zestimate:<span class="pull-right"><%= @property.zillow_result.zestimate %></span></div>
+                                        </div>
+                                      <% end %>
+
+                                      <div class="property-desc">
+                                        <div class="text-left">Parcel Number:<span class="pull-right"><%= @property.parcel_num %></span></div>
+                                      </div>
+
+                                      <div class="property-desc">
+                                        <div class="text-left">Name:<span class="pull-right"><%= @property.name %></span></div>
+                                      </div>
+                                      <div class="property-desc">
+                                        <div class="text-left">Bdr:<span class="pull-right"><%= @property.assessment.bdr %></span></div>
+                                      </div>
+
+                                      <div class="property-desc">
+                                        <div class="text-left">Ba:<span class="pull-right"><%= @property.assessment.ba %></span></div>
+                                      </div>
+
+                                      <h4> Assessment info </h4>
+                                      <div class="property-desc">
+                                        <div class="text-left">Use type:<span class="pull-right"><%= @property.assessment.use_type %></span></div>
+                                      </div>
+                                      <div class="property-desc">
+                                        <div class="text-left">Year assessed:<span class="pull-right"><%= @property.assessment.year_assessed %></span></div>
+                                      </div>
+
+                                      <div class="property-desc">
+                                        <div class="text-left">Total Value:<span class="pull-right"><%= @property.assessment.total_value %></span></div>
+                                      </div>
+
+                                      <div class="property-desc">
+                                        <div class="text-left">Lot Acres:<span class="pull-right"><%= @property.assessment.lot_acres %></span></div>
+                                      </div>
+
+                                      <div class="property-desc">
+                                        <div class="text-left">Year built:<span class="pull-right"><%= @property.assessment.year_built %></span></div>
+                                      </div>
+
+                                      <div class="property-desc">
+                                        <div class="text-left">Sold for <%= @property.assessment.sale_amount %> on <%= @property.assessment.recording_date %></div>
+                                      </div>
+
+                                      <h2>Zillow results</h2>
+                                      <% if @property.zillow_result %>
+                                          <div class="property-desc">
+                                            <div class="text-left">Building sqft:<span class="pull-right"><%= @property.zillow_result.finished_sq_ft %></span></div>
+                                          </div>
+                                          <div class="property-desc">
+                                            <div class="text-left">Lot size:<span class="pull-right"><%= @property.zillow_result.lot_size_sq_ft %></span></div>
+                                          </div>
+                                          <div class="property-desc">
+                                            <div class="text-left">Bdr:<span class="pull-right"><%= @property.zillow_result.bedrooms %></span></div>
+                                          </div>
+                                          <div class="property-desc">
+                                            <div class="text-left">Ba:<span class="pull-right"><%= @property.zillow_result.bathrooms %></span></div>
+                                          </div>
+                                          <% else %>
+                                          <div class="property-desc">
+                                            None
+                                          </div>
+                                      <% end %>
+        </div>
+
+
+
+        <div class="links">
+          <%= link_to "See Tax Bill", { url: "https://iwr.sdtreastax.com/SanDiegoTTCPaymentApplication/DefaultedDetails.aspx?parcelNumber=#{@property.parcel_num}" , :target => "_blank"}, class: "btn" %>
+          <%= link_to "View on Zillow", { url: "#{@property.zillow_result.zillow_url}", :target => "_blank" }, class: "btn" %>
+        </div>
+
+        <div class="map-image-box">
+              <div id="map"></div>
+              <!-- <div id="map-canvas" style='width: 200px; height: 100px;'></div> -->
+        </div>
 </div>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGwFAgG_E78rHdI3ndmwym-7x8RA5Fn_g&callback=initMap"
@@ -62,8 +100,6 @@
 
 
 <script type="text/javascript">
-
-
 
       coords = { lat: parseFloat( <%= @marker[0] %> ) , lng: parseFloat( <%= @marker[1] %> ) }
 
@@ -98,14 +134,14 @@
           title: 'Hello World!'
         });
 
-      // var panorama = new google.maps.StreetViewPanorama(
-      // document.getElementById('map'), {
-      //   position: coords,
-      //   pov: {
-      //     heading: 34,
-      //     pitch: 10
-      //   }
-      // });
+       var panorama = new google.maps.StreetViewPanorama(
+       document.getElementById('map'), {
+         position: coords,
+         pov: {
+           heading: 34,
+           pitch: 10
+         }
+       });
       }
 
 

@@ -4,9 +4,11 @@ class UpdateZillow
   end
 
   def run
+    puts "*** Update Zillow ***"
     find_props_to_update
     get_valuation
     # get_prop_details
+    puts "*** END Update Zillow ***"
   end
 
   def find_props_to_update
@@ -34,6 +36,7 @@ class UpdateZillow
         # binding.pry
         @zillow = ZillowResult.new(zillow_hash)
         prop.zillow_result = @zillow
+        puts "creating zillow result"
         @zillow.save
       end
       prop.save

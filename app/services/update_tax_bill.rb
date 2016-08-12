@@ -1,10 +1,12 @@
 class UpdateTaxBill
 
   def run
+    puts "*** Update Tax Bill ***"
     find_props_to_update
     @props.each do |prop|
       get_amount_owed(prop)
     end
+    puts "*** END Update Tax Bill ***"
   end
 
   def find_props_to_update
@@ -33,6 +35,7 @@ class UpdateTaxBill
 
     # Defauted amount
     amount = response.parser.css('table#PaymentApplicationContent_dataTableDefaulted').css('tr')[2].elements[1].text
+    puts "adding defaulted amount"
     property.defaulted_amount = amount
     property.save
   end

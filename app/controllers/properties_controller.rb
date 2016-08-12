@@ -1,8 +1,6 @@
 class PropertiesController < ApplicationController
 
-  # before_action :first_visit?
   before_action :set_properties
-  # , except: [:update]
 
   def index
     # @properties = @properties_obj.list <<----- for all listings
@@ -14,6 +12,7 @@ class PropertiesController < ApplicationController
         marker.lng prop.longitude
       end
     end
+    @properties = @properties.first(6)
   end
 
   def show
@@ -30,7 +29,6 @@ class PropertiesController < ApplicationController
 
     @marker = [ @property.latitude, @property.longitude ]
 
-
     # @images = []
     # @images << @property.aerial_image.url
 
@@ -46,39 +44,5 @@ class PropertiesController < ApplicationController
   def set_properties
     @properties_obj = ViewList.new
   end
-
-  # def scrape
-  #   @scraper = Scraper.new
-  #   @scraper.create_properties_array
-  #
-  #   keywords = ["TIMESHARE", "EXCL USE", "PERIOD", "SEASON"]
-  #
-  #   @scraper.properties.select! do |property|
-  #     !keywords.any? do |keyword|
-  #        property.legal_desc.include?(keyword)
-  #      end
-  #   end
-  #
-  #   update_database(@scraper)
-  # end
-  #
-  # def update_database(scraper)
-  #
-  #         scraper.properties.each do |record|
-  #           query = Property.find_by(parcel_num: record.parcel_num)
-  #           # binding.pry
-  #           if query
-  #             record.attributes.each do |attribute, value|
-  #                 if record[attribute] != nil
-  #                   query[attribute] = value
-  #                 end
-  #             end
-  #             query.save
-  #           else
-  #             record.save
-  #           end
-  #         end
-  #   redirect_to root_path
-  # end
 
 end

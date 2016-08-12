@@ -18,20 +18,22 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
+
+# clear existing cron jobs
+# crontab -r
+
+# update cronjob with environment
+# whenever --update-crontab --set environment='development'
 set :output, 'log/cron.log'
 
 every 1.day :at => '5:00 pm' do
   rake "update:properties", :environment => 'development'
 end
 
-# every 1.minute do
-#   rake "update:assessment"
-# end
-#
-# every 1.minute do
-#   rake "update:zillow"
-# end
-
-# every 5.minutes do
-#   rake "update:tax_bill"
-# end
+every 10.minutes do
+  rake "update:assessment"
+  sleep(6)
+  rake "update:zillow"
+  sleep(6)
+  rake "update:tax_bill"
+end

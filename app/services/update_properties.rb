@@ -86,7 +86,7 @@ class UpdateProperties
         end
       end
       if present == false
-        entry.delete
+        entry.destroy
       end
     end
   end

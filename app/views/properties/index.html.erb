@@ -6,13 +6,13 @@
     <div style="position: relative; width: 50%;float: right;box-sizing: border-box;box-shadow: -5px 0px 5px rgba(0, 0, 0, .5);z-index:4;">
       <% @properties.each do |property| %>
           <div style="margin: 1px; box-sizing: border-box; width: 49%;position: relative;float: left;">
-
+            <%= link_to property do %>
               <img alt="image" style="display: inline-block; width: 100%; height: auto; vertical-align: middle;" src="<%= image_path(property.aerial_image.url) %>">
 
 
                     <div style="position: absolute;top: 0;color:#e6e6e6;
 6px 6px 0px rgba(0,0,0,0.2);">
-                        <h4 style="text-align: center;   ">  <strong>   <%= property.address %></strong></h4>
+                        <h4 style="text-align: center;">  <strong>   <%= property.address %></strong></h4>
                     </div>
                     <div style="position: absolute;bottom: 0;color:#e6e6e6;
 6px 6px 0px rgba(0,0,0,0.2);">
@@ -23,9 +23,10 @@
                                 <h5><strong>1,200</strong> SqFt</h5>
 
 
-                        <p>Property value: <span class="amount"><%= property.zestimate %></span></p>
+                        <p>Property value: <span class="amount"><%= property.assessment.total_value %></span></p>
                         <p>Defaulted amt: <span class="amount"><%= property.defaulted_amount %></span></p>
                     </div>
+            <% end %>
         </div>
       <% end %>
     </div>

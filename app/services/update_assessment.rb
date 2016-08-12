@@ -7,6 +7,7 @@ class UpdateAssessment
 
   def run
     # 10.times do
+    puts "*** UpdateAssessment ***"
         find_props_to_update
         get_ip
         @props.each do |prop|
@@ -15,6 +16,7 @@ class UpdateAssessment
           sleep(3)
         end
       # end
+      puts "*** END UpdateAssessment ***"
   end
 
   def find_props_to_update

@@ -9,7 +9,6 @@ Myapp::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root to: 'properties#index'
-  get 'test', to: 'home#index'
   # get 'home/show/:id', to:'home#show', as: home_path
           # <%= form_tag update_view_path do %>
                   # <% end %>
